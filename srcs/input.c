@@ -6,7 +6,7 @@
 /*   By: amery <amery@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:01:00 by amery             #+#    #+#             */
-/*   Updated: 2023/01/25 16:51:32 by amery            ###   ########.fr       */
+/*   Updated: 2023/01/25 17:17:32 by amery            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	player_movement(int keycode, t_game *g)
 
 int	close_mlx(t_game *g)
 {
+	free_map(g->map, NULL);
 	exit(mlx_destroy_window(g->mlx, g->mlx_win));
 }
 
