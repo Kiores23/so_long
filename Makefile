@@ -1,5 +1,4 @@
 NAME = so_long
-NAME_TEST = t_so_long
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -16,7 +15,10 @@ SRCS_DIR = srcs
 SRCS_PATH = ./$(SRCS_DIR)/
 FILES = create_map \
 		verif_map \
+		input \
+		check_coordinates \
 		verif_map_utils \
+		so_long \
 		main
 SRCS = $(addprefix $(SRCS_PATH), $(addsuffix .c, $(FILES)))
 SRCS_O = $(addprefix $(OBJS_PATH), $(addsuffix .o, $(FILES)))
@@ -76,7 +78,7 @@ $(NAME) : $(ALL_SRCS) $(ALL_DIR_O)
 	mv $(UTILS_OR) $(UTILS_PATH_O)
 	mv $(GNL_OR) $(GNL_PATH_O)
 	mv $(PF_OR) $(PF_PATH_O)
-	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $(ALL_OBJS) -o $@
+	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(ALL_OBJS) -o $@
 
 $(OBJS_DIR) :
 	mkdir $(OBJS_DIR)
@@ -94,19 +96,3 @@ fclean : clean
 	$(RM) $(NAME) $(NAME_TEST)
 
 re : fclean $(NAME)
-
-#	----------TEST----------
-
-test : $(NAME_TEST)
-
-$(NAME_TEST) : $(ALL_SRCS) $(ALL_DIR_O)
-	$(CC) $(CFLAGS) -Ilmx -c $(ALL_SRCS)
-	mv $(SRCS_OR) $(OBJS_PATH)
-	mv $(UTILS_OR) $(UTILS_PATH_O)
-	mv $(GNL_OR) $(GNL_PATH_O)
-	mv $(PF_OR) $(PF_PATH_O)
-	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $(ALL_OBJS) -o $@
-
-retest : fclean $(NAME_TEST)
-
-.PHONY : all dir

@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_coordinates.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amery <amery@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 10:42:39 by amery             #+#    #+#             */
-/*   Updated: 2023/01/12 18:13:06 by amery            ###   ########.fr       */
+/*   Created: 2023/01/12 18:38:37 by amery             #+#    #+#             */
+/*   Updated: 2023/01/25 10:34:11 by amery            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char *argv[])
+int	player_coordinates(t_game *g)
 {
-	char	**map;
-	char	**map_cpy;
-	int		i;
-
-	map = 0;
-	if (argc == 1)
-		return (rerror(" Map : no file") + free_map(NULL, NULL));
-	map = create_map(argv[1]);
-	if (map)
-		map_cpy = create_map(argv[1]);
-	if (!map || !map_cpy)
-		return (free_map(NULL, NULL));
-	i = -1;
-	if (!verif_map(map_cpy))
-		return (free_map(map, map_cpy));
-	free_map(NULL, map_cpy);
-	so_long(map);
+	g->x = -1;
+	while (g->map[++g->x])
+	{
+		g->y = 0;
+		while (g->map[g->x][g->y] && g->map[g->x][g->y] != 'P')
+			g->y++;
+		if (g->map[g->x][g->y] == 'P')
+		{
+			g->xp = g->x;
+			g->yp = g->y;
+			return (1);
+		}
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amery <amery@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:49:23 by amery             #+#    #+#             */
-/*   Updated: 2022/12/12 21:24:38 by amery            ###   ########.fr       */
+/*   Updated: 2023/01/25 16:51:22 by amery            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	free_map(char **map, char **map_cpy)
 		free(map_cpy[i]);
 	if (map_cpy)
 		free(map_cpy);
-	printf("\n");
+	ft_printf("\n");
 	system("leaks so_long | grep leaks | tail -1");
 	return (0);
 }

@@ -6,18 +6,16 @@
 /*   By: amery <amery@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:17:58 by amery             #+#    #+#             */
-/*   Updated: 2022/12/12 16:18:00 by amery            ###   ########.fr       */
+/*   Updated: 2023/01/25 11:51:50 by amery            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_path(char	**map, char c, int *r)
+void	check_path(char	**map, char c, int *r, size_t x)
 {
-	size_t	x;
 	size_t	y;
 
-	x = -1;
 	while (map[++x])
 	{
 		y = 0;
@@ -25,16 +23,16 @@ void	check_path(char	**map, char c, int *r)
 		{
 			if (map[x][y] == 'P' || map[x][y] == 'R')
 			{
-				if (map[x - 1][y] == c || map[x + 1][x] == c
+				if (map[x - 1][y] == c || map[x + 1][y] == c
 					|| map[x][y + 1] == c || map[x][y - 1] == c)
 					*r = 1;
-				if (map[x][y] && map[x - 1][y] == c)
+				if (map[x - 1][y] == c)
 					map[x - 1][y] = 'R';
-				if (map[x][y] && map[x + 1][y] == c)
+				if (map[x + 1][y] == c)
 					map[x + 1][y] = 'R';
-				if (map[x][y] && map[x][y - 1] == c)
+				if (map[x][y - 1] == c)
 					map[x][y - 1] = 'R';
-				if (map[x][y] && map[x][y + 1] == c)
+				if (map[x][y + 1] == c)
 					map[x][y + 1] = 'R';
 			}
 		}
