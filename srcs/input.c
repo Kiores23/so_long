@@ -6,7 +6,7 @@
 /*   By: amery <amery@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:01:00 by amery             #+#    #+#             */
-/*   Updated: 2023/01/25 17:17:32 by amery            ###   ########.fr       */
+/*   Updated: 2023/01/26 11:10:15 by amery            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ int	key_mlx(int keycode, t_game *g)
 		close_mlx(g);
 	player_coordinates(g);
 	if (keycode == K_W || keycode == K_S || keycode == K_A || keycode == K_D)
-		player_movement(keycode, g);
-	if (player_coordinates(g))
 	{
-		ft_printf("%i\n", ++(g->count));
-		put_map(*g, g->map);
+		player_movement(keycode, g);
+		if (player_coordinates(g))
+		{
+			ft_printf("%i\n", ++(g->count));
+			put_map(*g, g->map);
+		}
 	}
 	if (!tabchr(g->map, 'E'))
 		close_mlx(g);
